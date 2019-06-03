@@ -58,3 +58,6 @@ $MUD_TMPDIR        = "/tmp/mudfiles"
 # which are also used for test.
 
 $ENABLE_TOFU = true
+$JWT_SECRET = "1234"
+# JWT token will be invalidated after TIME OF GENERATION + JWT_VALIDITY (in sec)
+$JWT_VALIDITY = 30 * 60

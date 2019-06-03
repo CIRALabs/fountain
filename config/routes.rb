@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   post '/.well-known/est/requestvoucherrequest', to: 'smarkaklink#rvr'
   post '/.well-known/est/voucher',        to: 'smarkaklink#voucher'
 
+  post '/jwt',        to: 'secure_gateway#login_jwt'
+
   if true # was $COAPSERVER, but it does not get set early enough.
     #get '/.well-known/core',   to: 'core#index'
     post '/e/rv', to: 'est#cbor_rv', coap: true, rt: 'ace.est', short: '/e'

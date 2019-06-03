@@ -1,6 +1,22 @@
+require 'jwt'
+
 class SecureGatewayController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :ssl_authenticator_lookup
+
+  def login_jwt
+    return unless ssl_login
+
+    payload = {
+      data: {
+        exp: Time.now.to_i + $JWT_VALIDITY,
+        access: ['spin']
+      },
+    }
+    token = JWT.encode payload, $JWT_SECRET, 'HS256', {typ: 'JWT'}
+    response.set_header('Authorization', "Bearer #{token}")
+    head 200
+  end
 
   #protected
   def ssl_authenticator_lookup

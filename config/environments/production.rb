@@ -87,3 +87,5 @@ if ENV['CERTDIR']
 end
 
 $ENABLE_TOFU = false
+# JWT token will be invalidated after TIME OF GENERATION + JWT_VALIDITY (in sec)
+$JWT_VALIDITY = 30 * 60
